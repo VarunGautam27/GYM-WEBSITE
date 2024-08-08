@@ -46,6 +46,7 @@ h1 {
 .register-form input,
 .register-form #services,
 .register-form #pricing,
+.register-form #phone,
 .register-form button {
     padding: 10px;
     font-size: 14px;
