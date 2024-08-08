@@ -32,11 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO members (name, email, password, phonenumber, services, pricing, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
     
     // Bind the parameters correctly using variables
-    $stmt->bind_param('ssissss', $name, $email, $hashed_password, $phonenumber, $services, $pricing, $created_at);
+    $stmt->bind_param('sssisss', $name, $email, $hashed_password, $phonenumber, $services, $pricing, $created_at);
 
     // Execute the SQL statement and check if the data was inserted successfully
     if ($stmt->execute()) {
-        echo "Registration successful!";
+        // Registration successful: Display a JavaScript alert
+        echo "<script>alert('Registration successful!'); window.location.href='index.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }
