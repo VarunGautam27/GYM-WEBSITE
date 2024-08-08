@@ -29,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $created_at = date("Y-m-d H:i:s");
 
     // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("INSERT INTO members (name, email, password, phonenumber, services, pricing) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $name, $email, $hashed_password, $phonenumber, $services, $pricing);
+    $stmt = $conn->prepare("INSERT INTO members (name, email, password, phonenumber, services, pricing,created_at) VALUES (?, ?, ?, ?, ?, ?,?)");
+    $stmt->bind_param("ssssss", $name, $email, $hashed_password, $phonenumber, $services, $pricing,$created_at);
 
     // Execute the SQL statement and check if the data was inserted successfully
     if ($stmt->execute()) {

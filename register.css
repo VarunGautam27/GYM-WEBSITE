@@ -44,6 +44,7 @@ h1 {
 }
 
 .register-form input,
+.regiser-form #username,
 .register-form #services,
 .register-form #pricing,
 .register-form #phone,
