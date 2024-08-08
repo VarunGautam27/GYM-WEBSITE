@@ -15,12 +15,16 @@ if ($conn->connect_error) {
 
 
 $name = $_POST['username'];
-$email = $_POST[''];
-$phone = $_POST['phone'];
-$membership_type = $_POST['membership_type'];
+$email = $_POST['eail'];
+$password = $_POST['password'];
+$phonenumber = $_POST['phone'];
+$services = $_POST['services'];
+$pricing = $_POST['pricing'];
 
-// Prepare an SQL statement to insert the data into the database
-$sql = "INSERT INTO members (name, email, phone, membership_type) VALUES ('$name', '$email', '$phone', '$membership_type')";
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+
+$sql = "INSERT INTO members (name, email,passord, phonenumber,services,pricing ) VALUES ('$name', '$email', '$hashed_password', '$phonenumber', '$services','$pricing')";
 
 // Execute the SQL statement and check if the data was inserted successfully
 if ($conn->query($sql) === TRUE) {
