@@ -1,3 +1,4 @@
+
 <?php
 // Database credentials
 $servername = "localhost";
@@ -37,9 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['services'] = $services;
             $_SESSION['pricing'] = $pricing;
 
-            // Redirect to a service details page
-            header("Location: services.php");
-            exit();
+            // Redirect to the service details page with a success message
+            echo "<script>alert('Sign in successful!'); window.location.href='services.php';</script>";
         } else {
             // Incorrect password
             echo "<script>alert('Incorrect password!'); window.location.href='login.html';</script>";
@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 
 
 
@@ -153,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form class="form">
+        <form class="form" action="" method="POST">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
             
@@ -161,6 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" required>
 
             <button type="submit">LOGIN</button>
+    </form>
             
        
     </div>
