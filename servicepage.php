@@ -20,25 +20,36 @@ $pricing = $_SESSION['pricing'];
     <title>Your Subscription Details</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #004d4d, #009999);
             padding: 20px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .container {
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            width: 100%;
             text-align: center;
         }
         h2 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         p {
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
         }
         .form {
             display: flex;
@@ -46,27 +57,38 @@ $pricing = $_SESSION['pricing'];
             gap: 20px;
         }
         .form button {
-            padding: 10px;
+            padding: 15px;
             font-size: 16px;
-            background-color: #28a745;
-            color: white;
+            background-color: #ffcc00;
+            color: #333;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
             border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
         .form button:hover {
-            background-color: #218838;
+            background-color: #e6b800;
         }
         .extra-services {
             margin-top: 30px;
         }
         .extra-services button {
             margin-top: 10px;
-            background-color: #007bff;
+            background-color: #006600;
         }
         .extra-services button:hover {
-            background-color: #0056b3;
+            background-color: #004d00;
+        }
+        .payment-options label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+        .payment-options input[type="radio"] {
+            margin-right: 10px;
         }
     </style>
 </head>
