@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -37,39 +43,23 @@ h1 {
     display: block;
 }
 
-.register-form input {
+.register-form input,
+.register-form #services,
+.register-form #pricing,
+.register-form button {
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
-}
-
-.register-form #services{
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    
-}
-
-.register-form #pricing{
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    
+    box-sizing: border-box;
 }
 
 .register-form button {
-    padding: 10px;
     font-size: 16px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
