@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+    $created_at = date("Y-m-d H:i:s");
+
     // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO members (name, email, password, phonenumber, services, pricing) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssss", $name, $email, $hashed_password, $phonenumber, $services, $pricing);
@@ -55,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h1>Register at Zenith Forge Gym</h1>
         <form action="register.php" method="POST" class="register-form">
-            <label for="username">Username:</label>
+            <label for="username">Full Name:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="email">Email:</label>
