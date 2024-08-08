@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form class="form" action="" method="POST">
+        <form class="form" action="servicepage.php" method="POST">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
             
