@@ -27,7 +27,7 @@ $diet_options = [
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: gym-diet-cover-1.jpg; /* Replace with the path to your background image */
+            background-image:url('gym-diet-cover-1.jpg'); /* Replace with the path to your background image */
             background-size: cover;
             background-position: center;
             padding: 20px;
@@ -51,16 +51,18 @@ $diet_options = [
             flex-direction: column;
             gap: 20px;
         }
-        .form button {
+        form button {
             font-size: 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+            background-color: #90ee90; /* Light green */
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            padding: 10px; /* Add padding for better appearance */
+            border-radius: 5px; /* Add border radius for rounded corners */
         }
         .form button:hover {
-            background-color:rgb(34, 216, 216);
+            background-color: #00acc1; 
         }
         .diet-options {
             text-align: left;
@@ -85,7 +87,7 @@ $diet_options = [
 </head>
 <body>
     <div class="container">
-        <h2>Diet Management System</h2>
+        <h2>Diet Preferences</h2>
         <form action="save_diet.php" method="POST">
             <div class="diet-options">
                 <?php foreach ($diet_options as $option => $description): ?>
@@ -96,7 +98,7 @@ $diet_options = [
                     <p class="diet-description"><?php echo htmlspecialchars($description); ?></p>
                 <?php endforeach; ?>
             </div>
-            <button type="submit">Save Diet Preference</button>
+            <button type="submit" class="form-button">Save Diet Preference</button>
         </form>
     </div>
 </body>

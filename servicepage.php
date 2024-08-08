@@ -48,6 +48,15 @@ $pricing = $_SESSION['pricing'];
             margin-bottom: 20px;
             color: #555;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image:url('servicebg.jpg'); /* Replace with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            margin: 0;
+        }
         .form button {
             padding: 10px;
             font-size: 16px;
