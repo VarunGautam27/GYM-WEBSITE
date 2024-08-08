@@ -27,12 +27,14 @@ $diet_options = [
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Light cyan background */
+            background-image: gym-diet-cover-1.jpg; /* Replace with the path to your background image */
+            background-size: cover;
+            background-position: center;
             padding: 20px;
             margin: 0;
         }
         .container {
-            background-color: #ffffff; /* White background for the container */
+            background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -50,17 +52,15 @@ $diet_options = [
             gap: 20px;
         }
         .form button {
-            padding: 10px;
             font-size: 16px;
-            background-color: #00acc1; /* Medium cyan */
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
         }
         .form button:hover {
-            background-color: #00838f; /* Darker cyan */
+            background-color:rgb(34, 216, 216);
         }
         .diet-options {
             text-align: left;
@@ -76,6 +76,10 @@ $diet_options = [
             font-size: 12px;
             color: #555;
             margin-bottom: 20px;
+
+        }
+        button{
+            background
         }
     </style>
 </head>
