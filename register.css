@@ -54,6 +54,15 @@ h1 {
     
 }
 
+.register-form #pricing{
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    
+}
+
 .register-form button {
     padding: 10px;
     font-size: 16px;
