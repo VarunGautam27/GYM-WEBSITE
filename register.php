@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="pricing">Choose pricing:</label>
             <select id="pricing" name="pricing" required>
-                <option value="Quarterly">Quarterly</option>
+                <option value="Quaterly">Quaterly</option>
                 <option value="Monthly">Monthly</option>
                 <option value="Half-yearly">Half-Yearly</option>
                 <option value="Yearly">Yearly</option>

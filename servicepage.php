@@ -20,72 +20,69 @@ $pricing = $_SESSION['pricing'];
     <title>Your Subscription Details</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #004d4d, #009999);
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa; /* Light cyan background */
+            color: #333;
+            margin: 0;
             padding: 20px;
-            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
         .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-            max-width: 600px;
+            background-color: #ffffff; /* White background for the container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
             width: 100%;
             text-align: center;
         }
         h2 {
-            margin-bottom: 30px;
-            font-size: 28px;
-            color: #ffcc00;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #00796b; /* Dark cyan */
         }
         p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #ccc;
-        }
-        .form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
         }
         .form button {
-            padding: 15px;
+            padding: 10px;
             font-size: 16px;
-            background-color: #ffcc00;
-            color: #333;
+            background-color: #00acc1; /* Medium cyan */
+            color: white;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
             border-radius: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            width: 100%;
         }
         .form button:hover {
-            background-color: #e6b800;
+            background-color: #00838f; /* Darker cyan */
         }
         .extra-services {
-            margin-top: 30px;
+            margin-top: 20px;
         }
         .extra-services button {
-            margin-top: 10px;
-            background-color: #006600;
+            padding: 10px;
+            background-color: #004d40; /* Dark cyan */
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            width: 100%;
         }
         .extra-services button:hover {
-            background-color: #004d00;
+            background-color: #00251a; /* Even darker cyan */
         }
         .payment-options label {
             display: block;
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #ffcc00;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #00796b; /* Dark cyan */
         }
         .payment-options input[type="radio"] {
             margin-right: 10px;
@@ -109,12 +106,15 @@ $pricing = $_SESSION['pricing'];
                     <input type="radio" name="payment_method" value="mobile_banking" required>
                     Pay via Mobile Banking
                 </label>
+                <label>
+                    <input type="radio" name="payment_method" value="khalti" required>
+                    Pay via khalti
+                </label>
             </div>
             <button type="submit">Pay Now</button>
         </form>
 
         <div class="extra-services">
-            <h2>Manage Your Diet</h2>
             <button onclick="window.location.href='diet_management.php';">Go to Diet Management</button>
         </div>
     </div>
