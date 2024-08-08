@@ -1,3 +1,62 @@
+<?php
+// Database credentials
+$servername = "localhost";
+$username = "root"; 
+$password = "";  
+$dbname = "gym_registration";
+
+// Create a connection to the MySQL database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Process the form when it's submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Prepare a statement to retrieve user details
+    $stmt = $conn->prepare("SELECT id, password, services, pricing FROM members WHERE email = ?");
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->store_result();
+    
+    if ($stmt->num_rows > 0) {
+        // Bind result variables
+        $stmt->bind_result($id, $hashed_password, $services, $pricing);
+        $stmt->fetch();
+
+        // Verify the password
+        if (password_verify($password, $hashed_password)) {
+            // Password is correct, start a session and store user information
+            session_start();
+            $_SESSION['id'] = $id;
+            $_SESSION['services'] = $services;
+            $_SESSION['pricing'] = $pricing;
+
+            // Redirect to a service details page
+            header("Location: services.php");
+            exit();
+        } else {
+            // Incorrect password
+            echo "<script>alert('Incorrect password!'); window.location.href='login.html';</script>";
+        }
+    } else {
+        // No user found with that email
+        echo "<script>alert('No account found with that email!'); window.location.href='login.html';</script>";
+    }
+
+    // Close the statement and the connection
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <style>

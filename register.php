@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $services = $_POST['services'];
     $pricing = $_POST['pricing'];
 
-    // Hash the password
+   
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $created_at = date("Y-m-d H:i:s");
@@ -34,15 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Bind the parameters correctly using variables
     $stmt->bind_param('sssisss', $name, $email, $hashed_password, $phonenumber, $services, $pricing, $created_at);
 
-    // Execute the SQL statement and check if the data was inserted successfully
+  
     if ($stmt->execute()) {
-        // Registration successful: Display a JavaScript alert
+ 
         echo "<script>alert('Registration successful!'); window.location.href='index.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }
 
-    // Close the statement and the connection
+  
     $stmt->close();
     $conn->close();
 }
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </select>
 
             <div class="login-link">
-                <span>Already have an account? <a href="login.html">Login</a></span>
+                <span>Already have an account? <a href="login.php">Login</a></span>
             </div>
 
             <button type="submit">Register</button>
