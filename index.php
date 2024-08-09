@@ -203,7 +203,7 @@ if ($conn->connect_error) {
                 <a href="#"><img src="linkedin.png" alt="linkedin" width="30px"></a>
         
         </div>
-        <p>&copy; 2024 Zenith Forge Gym. All Rights Reserved.</p>
+        <p class="copyright">&copy; 2024 Zenith Forge Gym. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>

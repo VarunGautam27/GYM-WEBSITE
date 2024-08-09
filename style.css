@@ -451,32 +451,37 @@ margin: auto;
     color: gold;
  }
 
- .footer{
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    padding: 40px 0;
-    background-color: var(--snd-bg-color);
- }
+ .footer {
+    background-color: #333; /* Background color for the footer */
+    padding: 20px 0; /* Padding for top and bottom */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center-align the text */
+}
 
- .footer .social{
-    text-align: center;
-padding-bottom: 20px;
-color: var(--bg-color);
- }
+.social {
+    display: flex;
+    justify-content: center; /* Horizontally center the social icons */
+    gap: 20px; /* Space between social icons */
+    margin-bottom: 10px; /* Add some space between the icons and the copyright text */
+}
 
- .footer .social a{
-    font-size: 25px;
-    color: var(--bg-color);
-    width: 42px;
-    height: 42px;
-    line-height: 42px;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    margin: 0 10px;
-    transition: 0.5s ease-in-out;
- }
+.social a img {
+    width: 30px; /* Icon size */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.social a:hover img {
+    transform: scale(1.2); /* Slightly enlarge the icons on hover */
+}
+
+.copyright {
+    color: #fff; /* Text color */
+    font-size: 1.4rem; /* Font size */
+}
+
 
  /* scrollbar */
 
