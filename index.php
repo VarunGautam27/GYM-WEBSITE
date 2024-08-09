@@ -193,7 +193,7 @@ if ($conn->connect_error) {
 </body>
 </html>
  <!-- Footer Section -->
- <footer class="footer">
+ <footer class="foter">
         <div class="social">
           
            

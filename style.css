@@ -451,7 +451,7 @@ margin: auto;
     color: gold;
  }
 
- .footer {
+ .foter {
     background-color: #333; /* Background color for the footer */
     padding: 20px 0; /* Padding for top and bottom */
     display: flex;
@@ -469,7 +469,7 @@ margin: auto;
 }
 
 .social a img {
-    width: 30px; /* Icon size */
+    width: 30px; /*Icon size */
     transition: transform 0.3s ease; /* Smooth hover effect */
 }
 
