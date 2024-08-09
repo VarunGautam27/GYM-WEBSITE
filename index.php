@@ -21,6 +21,229 @@ if ($conn->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zenith Forge Gym</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+    footer {
+    margin-top: 10px;
+    width: 100%;
+    background-color: grey;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer div {
+    text-align: center;
+}
+
+
+
+.footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.col-1 a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+form input {
+    width: 400px;
+    height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    border: none;
+}
+
+form button {
+    background-color: transparent;
+    border: 2px solid gray;
+    color: #fff;
+    width: 60%;
+    border-radius: 70px;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-co
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer .follow {
+    margin-top: 20px;
+}
+
+footer .icon {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+}
+
+footer .install img {
+    margin: 10px 0 15px 0;
+}
+
+footer .follow .icon img:hover {
+    color: #088178;
+}
+
+footer a:hover {
+    color: #088178;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+}
+
+.sectionfotter-p1 {
+    background-color: gray;
+}
+
+.fav {
+    padding-top: 10px;
+}
+
+.Customer {
+    font-weight: 600px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.footer {
+    margin-top: 10px;
+    width: 100%;
+    background-color:
+    color: white;
+    display: flex;
+}
+
+.footer div {
+    text-align: center;
+}
+
+.col-2 {
+    flex-grow: 2;
+}
+
+.footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.col-1 a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer.follow {
+    margin-top: 20px;
+}
+
+footer .icon {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+}
+
+footer .follow .icon img:hover {
+    color: #088178;
+}
+
+footer a:hover {
+    color: #088178;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+}
+
+
+    </style>
 </head>
 <body>
    <header>
@@ -193,19 +416,41 @@ if ($conn->connect_error) {
 </body>
 </html>
  <!-- Footer Section -->
- <footer class="foter">
-        <div class="social">
-          
-           
-                <a href="#"><img src="facebooklogo.png" alt="Facebook" width="30px"></a>
-                <a href="#"><img src="instagram.png" alt="Instagram" width="30px"></a>
-                <a href="#"><img src="twitter.png" alt="Twitter" width="30px"></a>
-                <a href="#"><img src="linkedin.png" alt="linkedin" width="30px"></a>
-        
+  <div>
+  <footer class="sectionfotter-p1">
+        <div class="col">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> Dillibazar, Kathmandu, Nepal</p>
+            <p><strong>Phone: +977 9860799430/ (+977) 01 534209</strong></p>
+            <p><strong>Hours: </strong> 6:00am. - 10:00pm, Mon - Sat</p>
+            <div class="Follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <img src="facebooklogo.png" width="30px" height="30px">
+                    <img src="instagram.png" width="30px" height="30px">
+                    <img src="twitter.png" width="30px" height="30px">
+                    <img src="linkedin.png" width="30px" height="30px">
+                </div>
+            </div>
         </div>
-        <p class="copyright">&copy; 2024 Zenith Forge Gym. All Rights Reserved.</p>
-    </footer>
-
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+           
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        
+        <div class="col install">
+           
+            <p>Secured Payment Gateways</p>
+            <img src="esewa.jpg" height="40px" width="40px">
+        </div>
+        <div class="copyright">
+            <p>© 2024, ZENITH FORGE GYM</p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

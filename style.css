@@ -451,35 +451,255 @@ margin: auto;
     color: gold;
  }
 
- .foter {
-    background-color: #333; /* Background color for the footer */
-    padding: 20px 0; /* Padding for top and bottom */
+ .footer {
+    margin-top: 10px;
+    width: 100%;
+    background-color: black;
+    color: white;
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    text-align: center; /* Center-align the text */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.social {
+.footer div {
+    text-align: center;
+}
+
+.col-2 {
+    flex-grow: 2;
+}
+
+.footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.col-1 a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+form input {
+    width: 400px;
+    height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    border: none;
+}
+
+form button {
+    background-color: transparent;
+    border: 2px solid gray;
+    color: #fff;
+    width: 60%;
+    border-radius: 70px;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+footer {
     display: flex;
-    justify-content: center; /* Horizontally center the social icons */
-    gap: 20px; /* Space between social icons */
-    margin-bottom: 10px; /* Add some space between the icons and the copyright text */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.social a img {
-    width: 30px; /*Icon size */
-    transition: transform 0.3s ease; /* Smooth hover effect */
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
-.social a:hover img {
-    transform: scale(1.2); /* Slightly enlarge the icons on hover */
+footer .logo {
+    margin-bottom: 30px;
 }
 
-.copyright {
-    color: #fff; /* Text color */
-    font-size: 1.4rem; /* Font size */
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer .follow {
+    margin-top: 20px;
+}
+
+footer .icon {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+}
+
+footer .install img {
+    margin: 10px 0 15px 0;
+}
+
+footer .follow .icon img:hover {
+    color: #088178;
+}
+
+footer a:hover {
+    color: #088178;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+}
+
+.sectionfotter-p1 {
+    background-color: gray;
+}
+
+.fav {
+    padding-top: 10px;
+}
+
+.Customer {
+    font-weight: 600px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.footer {
+    margin-top: 10px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+}
+
+.footer div {
+    text-align: center;
+}
+
+.col-2 {
+    flex-grow: 2;
+}
+
+.footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.col-1 a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+form input {
+    width: 400px;
+    height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    border: none;
+}
+
+form button {
+    background-color: transparent;
+    border: 2px solid gray;
+    color: #fff;
+    width: 60%;
+    border-radius: 70px;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+footer.follow {
+    margin-top: 20px;
+}
+
+footer .icon {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .install .row img {
+    border: 1px solid #088178;
+    border-radius: 6px;
+}
+
+footer .install img {
+    margin: 10px 0 15px 0;
+}
+
+footer .follow .icon img:hover {
+    color: #088178;
+}
+
+footer a:hover {
+    color: #088178;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+}
+
+.sectionfotter-p1 {
+    background-color: gray;
 }
 
 
