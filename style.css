@@ -453,7 +453,7 @@ margin: auto;
 
  .footer{
     position: relative;
-    buttom: 0;
+    bottom: 0;
     width: 100%;
     padding: 40px 0;
     background-color: var(--snd-bg-color);
@@ -475,7 +475,7 @@ color: var(--bg-color);
     text-align: center;
     border-radius: 50%;
     margin: 0 10px;
-    transition: 0.5s ease;
+    transition: 0.5s ease-in-out;
  }
 
  /* scrollbar */

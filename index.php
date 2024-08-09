@@ -193,15 +193,15 @@ if ($conn->connect_error) {
 </body>
 </html>
  <!-- Footer Section -->
- <footer>
+ <footer class="footer">
         <div class="social">
           
-            <div class="social_icons">
+           
                 <a href="#"><img src="facebooklogo.png" alt="Facebook" width="30px"></a>
                 <a href="#"><img src="instagram.png" alt="Instagram" width="30px"></a>
                 <a href="#"><img src="twitter.png" alt="Twitter" width="30px"></a>
                 <a href="#"><img src="linkedin.png" alt="linkedin" width="30px"></a>
-            </div>
+        
         </div>
         <p>&copy; 2024 Zenith Forge Gym. All Rights Reserved.</p>
     </footer>
