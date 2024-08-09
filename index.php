@@ -198,8 +198,8 @@ if ($conn->connect_error) {
             <p>&copy; 2024 Zenith Forge Gym. All Rights Reserved.</p>
             <div class="social_icons">
                 <a href="#"><img src="facebook.png" alt="Facebook" width="30px"></a>
-                <a href="#"><img src="instagram.png" alt="Instagram" width="30px"></a>
-                <a href="#"><img src="twitter.png" alt="Twitter" width="30px"></a>
+                <a href="#"><img src="insta.jpg" alt="Instagram" width="30px"></a>
+                <a href="#"><img src="twit.png" alt="Twitter" width="30px"></a>
             </div>
         </div>
     </footer>
