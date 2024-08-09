@@ -451,6 +451,32 @@ margin: auto;
     color: gold;
  }
 
+ .footer{
+    position: relative;
+    buttom: 0;
+    width: 100%;
+    padding: 40px 0;
+    background-color: var(--snd-bg-color);
+ }
+
+ .footer .social{
+    text-align: center;
+padding-bottom: 20px;
+color: var(--bg-color);
+ }
+
+ .footer .social a{
+    font-size: 25px;
+    color: var(--bg-color);
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: 0.5s ease;
+ }
 
  /* scrollbar */
 
