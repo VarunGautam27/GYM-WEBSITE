@@ -27,11 +27,28 @@ $diet_options = [
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image:url('gym-diet-cover-1.jpg'); /* Replace with the path to your background image */
+            background-image: url('gym-diet-cover-1.jpg'); /* Replace with the path to your background image */
             background-size: cover;
             background-position: center;
             padding: 20px;
             margin: 0;
+            position: relative;
+        }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
         }
         .container {
             background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
@@ -78,14 +95,14 @@ $diet_options = [
             font-size: 12px;
             color: #555;
             margin-bottom: 20px;
-
-        }
-        button{
-            background
         }
     </style>
 </head>
 <body>
+    <form action="logout.php" method="POST">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+
     <div class="container">
         <h2>Diet Preferences</h2>
         <form action="save_diet.php" method="POST">
