@@ -192,4 +192,18 @@ if ($conn->connect_error) {
     <script src="script.js"></script>
 </body>
 </html>
+ <!-- Footer Section -->
+ <footer>
+        <div class="footer_content">
+            <p>&copy; 2024 Zenith Forge Gym. All Rights Reserved.</p>
+            <div class="social_icons">
+                <a href="#"><img src="facebook.png" alt="Facebook" width="30px"></a>
+                <a href="#"><img src="instagram.png" alt="Instagram" width="30px"></a>
+                <a href="#"><img src="twitter.png" alt="Twitter" width="30px"></a>
+            </div>
+        </div>
+    </footer>
 
+    <script src="script.js"></script>
+</body>
+</html>
