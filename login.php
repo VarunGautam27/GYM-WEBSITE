@@ -1,5 +1,6 @@
-
 <?php
+session_start();
+
 // Database credentials
 $servername = "localhost";
 $username = "root"; 
@@ -14,17 +15,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Initialize error message
+$errorMsg = '';
+
 // Process the form when it's submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     // Prepare a statement to retrieve user details
     $stmt = $conn->prepare("SELECT id, password, services, pricing FROM members WHERE email = ?");
     $stmt->bind_param('s', $email);
     $stmt->execute();
     $stmt->store_result();
-    
+
     if ($stmt->num_rows > 0) {
         // Bind result variables
         $stmt->bind_result($id, $hashed_password, $services, $pricing);
@@ -33,40 +37,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verify the password
         if (password_verify($password, $hashed_password)) {
             // Password is correct, start a session and store user information
-            session_start();
             $_SESSION['id'] = $id;
             $_SESSION['services'] = $services;
             $_SESSION['pricing'] = $pricing;
 
             // Redirect to the service details page with a success message
-            echo "<script>alert('Sign in successful!'); window.location.href='services.php';</script>";
+            header("Location: servicepage.php");
+            exit();
         } else {
-            // Incorrect password
-            echo "<script>alert('Incorrect password!'); window.location.href='login.html';</script>";
+            $errorMsg = "Incorrect password!";
         }
     } else {
-        // No user found with that email
-        echo "<script>alert('No account found with that email!'); window.location.href='login.html';</script>";
+        $errorMsg = "No account found with that email!";
     }
 
-    // Close the statement and the connection
+    // Close the statement
     $stmt->close();
-    $conn->close();
 }
+
+// Close the connection
+$conn->close();
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
+        /* CSS code */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -76,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             height: 100vh;
             margin: 0;
         }
-
         .container {
             background-color: #fff;
             padding: 40px;
@@ -86,26 +85,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             max-width: 400px;
             width: 100%;
         }
-
         h1 {
             margin-bottom: 20px;
             font-size: 24px;
             color: #333;
         }
-
         .form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .form label {
             font-size: 16px;
             color: #333;
             text-align: left;
             display: block;
         }
-
         .form input,
         .form button {
             padding: 10px;
@@ -115,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%;
             box-sizing: border-box;
         }
-
         .form button {
             font-size: 16px;
             background-color: #28a745;
@@ -124,37 +118,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         .form button:hover {
             background-color: #218838;
         }
-
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
         .register-link {
             margin-top: 20px;
             font-size: 14px;
         }
-
         .register-link a {
             color: #28a745;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
-
         .register-link a:hover {
             color: #218838;
         }
     </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form class="form" action="servicepage.php" method="POST">
+        <form class="form" method="POST">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
             
@@ -162,9 +152,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" required>
 
             <button type="submit">LOGIN</button>
-    </form>
-            
-       
+        </form>
+        <?php if (!empty($errorMsg)): ?>
+            <div class="error-message"><?php echo htmlspecialchars($errorMsg); ?></div>
+        <?php endif; ?>
+        <div class="register-link">
+            <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+        </div>
     </div>
 </body>
 </html>

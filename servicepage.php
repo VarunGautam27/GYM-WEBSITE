@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['id'])) {
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
@@ -19,9 +19,13 @@ $pricing = $_SESSION['pricing'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Subscription Details</title>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #e0f7fa; /* Light cyan background */
+            background-image: url('servicebg.jpg'); /* Replace with the path to your background image */
+            background-size: cover;
+            background-position: center;
             color: #333;
             margin: 0;
             padding: 20px;
@@ -49,14 +53,8 @@ $pricing = $_SESSION['pricing'];
             color: #555;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-image:url('servicebg.jpg'); /* Replace with the path to your background image */
-            background-size: cover;
-            background-position: center;
-            padding: 20px;
-            margin: 0;
-        }
+        
+        
         .form button {
             padding: 10px;
             font-size: 16px;
