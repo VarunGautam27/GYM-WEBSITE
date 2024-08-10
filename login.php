@@ -1,47 +1,43 @@
 <?php
 session_start();
 
-// Database credentials
 $servername = "localhost";
 $username = "root"; 
 $password = "";  
 $dbname = "gym_registration";
 
-// Create a connection to the MySQL database
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Initialize error message
+
 $errorMsg = '';
 
-// Process the form when it's submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Prepare a statement to retrieve user details
+  
     $stmt = $conn->prepare("SELECT id, password, services, pricing FROM members WHERE email = ?");
     $stmt->bind_param('s', $email);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // Bind result variables
+      
         $stmt->bind_result($id, $hashed_password, $services, $pricing);
         $stmt->fetch();
 
-        // Verify the password
+ 
         if (password_verify($password, $hashed_password)) {
-            // Password is correct, start a session and store user information
+
             $_SESSION['id'] = $id;
             $_SESSION['services'] = $services;
             $_SESSION['pricing'] = $pricing;
 
-            // Redirect to the service details page with a success message
             header("Location: servicepage.php");
             exit();
         } else {
@@ -51,11 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errorMsg = "No account found with that email!";
     }
 
-    // Close the statement
+
     $stmt->close();
 }
 
-// Close the connection
+
 $conn->close();
 ?>
 
@@ -66,7 +62,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        /* CSS code */
+  
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;

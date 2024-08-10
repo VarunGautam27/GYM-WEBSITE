@@ -39,7 +39,7 @@ try {
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color:	#E0FFFF;
+                background-color: 	#E0FFFF;
                 color: white;
                 text-align: center;
                 padding: 50px;

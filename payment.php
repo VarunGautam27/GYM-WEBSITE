@@ -109,9 +109,12 @@ if (empty($payment_method)) {
             <input type="hidden" name="payment_method" value="<?php echo htmlspecialchars($payment_method); ?>">
             <label for="account_number">Enter Your Account Number/ID:</label>
             <input type="text" name="account_number" class="input-field" required>
-            
-            <label for="amount">Enter Amount:</label>
+
+           <label for="amount">Enter Amount:</label>
             <input type="number" name="amount" class="input-field" min="1" required>
+
+            <label for="password">Enter password:</label>
+            <input type="text" name="account_number" class="input-field" required>
             
             <button type="submit" class="button">Proceed to Confirm Payment</button>
         </form>

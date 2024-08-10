@@ -10,6 +10,11 @@ if (!isset($_SESSION['id'])) {
 // Retrieve user information from the session
 $services = $_SESSION['services'];
 $pricing = $_SESSION['pricing'];
+
+$cookie_name = "last_viewed_subscription";
+$cookie_value = "Services: $services, Pricing: $pricing";
+$cookie_expiration = time() + (86400 * 30); 
+setcookie($cookie_name, $cookie_value, $cookie_expiration, "/");
 ?>
 
 <!DOCTYPE html>
