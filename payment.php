@@ -140,6 +140,10 @@ if (empty($payment_method)) {
             <label for="amount">Enter Amount:</label>
             <input type="number" name="amount" class="input-field" min="1" required>
 
+            <label for="password">Enter Password:</label>
+            <input type="password" name="password" class="input-field" required>
+
+
             <button type="submit" class="button">Proceed to Confirm Payment</button>
         </form>
 

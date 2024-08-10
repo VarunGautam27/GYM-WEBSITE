@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 // Database credentials
 $servername = "localhost";
 $username = "root";
-$password = ""; // Use your database password
+$password = ""; 
 $dbname = "gym_registration";
 
 // Create a connection to the MySQL database
