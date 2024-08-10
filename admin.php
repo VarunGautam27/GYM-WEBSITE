@@ -3,14 +3,14 @@ session_start();
 
 // Check if the user is logged in as admin
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header("Location: login.php"); // Redirect to login page if not logged in
+    header("Location: ADMIN_LOGIN.PHP); // Redirect to login page if not logged in
     exit();
 }
 
 // Database credentials
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = ""; // Use your database password
 $dbname = "gym_registration";
 
 // Create a connection to the MySQL database
@@ -21,8 +21,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch registered members
-$result = $conn->query("SELECT * FROM members ORDER BY created_at DESC");
+// Fetch registered members with payment details
+$sql = "SELECT m.id, m.name, m.email, m.phonenumber, m.services, m.pricing,
+               p.amount, p.payment_date, DATE_ADD(p.payment_date, INTERVAL 30 DAY) AS validity
+        FROM members m
+        LEFT JOIN payments p ON m.id = p.member_id
+        ORDER BY m.created_at DESC";
+
+$result = $conn->query($sql);
 
 // Handle account deletion
 if (isset($_POST['delete'])) {
@@ -111,6 +117,9 @@ if (isset($_POST['delete'])) {
                     <th>Phone Number</th>
                     <th>Services</th>
                     <th>Pricing</th>
+                    <th>Payment Amount</th>
+                    <th>Payment Date</th>
+                    <th>Validity (30 Days)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -124,6 +133,9 @@ if (isset($_POST['delete'])) {
                             <td><?php echo htmlspecialchars($row['phonenumber']); ?></td>
                             <td><?php echo htmlspecialchars($row['services']); ?></td>
                             <td><?php echo htmlspecialchars($row['pricing']); ?></td>
+                            <td><?php echo htmlspecialchars($row['amount'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['payment_date'] ?? 'N/A'); ?></td>
+                            <td><?php echo htmlspecialchars($row['validity'] ?? 'N/A'); ?></td>
                             <td>
                                 <form action="admin.php" method="POST" style="display:inline;">
                                     <button type="submit" name="delete" value="<?php echo $row['id']; ?>">Delete</button>
@@ -133,7 +145,7 @@ if (isset($_POST['delete'])) {
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="7" style="text-align:center;">No members registered.</td>
+                        <td colspan="10" style="text-align:center;">No members registered.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
