@@ -117,7 +117,24 @@ $pricing = $_SESSION['pricing'];
             height: 5vh;
         }
         .login_button:hover {
-            background-color: rgb(148, 225, 148); /* Even darker cyan */
+            background-color: rgb(148, 225, 148); 
+        }
+        .delete-account {
+            margin-top: 20px;
+        }
+        .delete-button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #FF0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .delete-button:hover {
+            background-color: #d32f2f; /* Darker red */
         }
     </style>
 </head>
@@ -159,6 +176,12 @@ $pricing = $_SESSION['pricing'];
 
         <div class="extra-services">
             <button onclick="window.location.href='diet_management.php';">Go to Diet Management</button>
+        </div>
+
+        <div class="delete-account">
+            <form action="delete.php" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                <button type="submit" class="delete-button">Delete Account</button>
+            </form>
         </div>
     </div>
 </body>
