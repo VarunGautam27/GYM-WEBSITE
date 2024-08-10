@@ -7,6 +7,19 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+// Database connection
+$servername = "localhost";
+$username = "root"; // Use your database username
+$password = ""; // Use your database password
+$dbname = "gym_registration";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 // Initialize variables
 $payment_method = '';
 $account_number = '';
@@ -32,7 +45,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Simulate payment success (replace this with actual payment processing logic)
     if (!empty($payment_method) && !empty($account_number) && !empty($amount)) {
-        $payment_success = true; // Assume success if all necessary fields are provided
+        // Insert payment details into the database
+        $validity_date = date('Y-m-d H:i:s', strtotime('+30 days'));
+        
+        $stmt = $conn->prepare("INSERT INTO payments (amount, payment_date, validity) VALUES (?, NOW(), ?)");
+        $stmt->bind_param("ds", $amount, $validity_date);
+
+        if ($stmt->execute()) {
+            $payment_success = true; // Payment record inserted successfully
+        } else {
+            // Handle error
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
     }
 }
 
@@ -50,6 +76,7 @@ if (empty($payment_method)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Confirmation</title>
     <style>
+        /* Add your styles here */
         body {
             font-family: Arial, sans-serif;
             background-color: #26d3e9;
@@ -110,17 +137,14 @@ if (empty($payment_method)) {
             <label for="account_number">Enter Your Account Number/ID:</label>
             <input type="text" name="account_number" class="input-field" required>
 
-           <label for="amount">Enter Amount:</label>
+            <label for="amount">Enter Amount:</label>
             <input type="number" name="amount" class="input-field" min="1" required>
 
-            <label for="password">Enter password:</label>
-            <input type="text" name="account_number" class="input-field" required>
-            
             <button type="submit" class="button">Proceed to Confirm Payment</button>
         </form>
 
         <?php if ($payment_success): ?>
-            <p>Your payment of <strong><?php echo htmlspecialchars($amount); ?></strong> via <strong><?php echo htmlspecialchars($payment_method); ?></strong> was successful!</p>
+            <p>Your payment of <strong><?php echo htmlspecialchars($amount); ?></strong> was successful!</p>
         <?php else: ?>
             <?php if (!empty($account_number) || !empty($amount)): ?>
                 <p>There was an error processing your payment. Please ensure all details are correct.</p>
