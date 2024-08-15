@@ -23,10 +23,10 @@ if ($conn->connect_error) {
 }
 
 // Fetch registered members with payment details
-$sql = "SELECT m.id, m.name, m.email, m.phonenumber, m.services, m.pricing,
+$sql = "SELECT m.id AS member_id, m.name, m.email, m.phonenumber, m.services, m.pricing,
                p.amount, p.payment_date, DATE_ADD(p.payment_date, INTERVAL 30 DAY) AS validity
         FROM members m
-        LEFT JOIN payments p ON m.id = p.member_id
+        LEFT JOIN payments p ON m.id = p.id
         ORDER BY m.created_at DESC";
 
 $result = $conn->query($sql);
