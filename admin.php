@@ -42,7 +42,9 @@ $sql .= " ORDER BY m.created_at DESC";
 // Handle account deletion
 if (isset($_POST['delete'])) {
     $id_to_delete = $_POST['delete'];
+    $conn->query("DELETE FROM payments WHERE member_id = $id_to_delete");
     $conn->query("DELETE FROM members WHERE id = $id_to_delete");
+   
     header("Location: admin.php"); // Refresh the page after deletion
     exit();
 }
