@@ -140,10 +140,10 @@ if (isset($_POST['delete'])) {
         }
         .logout-button {
             display: block;
-            width: 100%;
+            width: 10%;
             margin-top: 30px;
             padding: 5x 0;
-            background-color: #00796b;
+            background-color: skyblue;
             color: white;
             text-align: center;
             border-radius: 6px;
@@ -168,7 +168,7 @@ if (isset($_POST['delete'])) {
                 <button type="submit">Search</button>
             </form>
         </div>
-        
+
         <table>
             <thead>
                 <tr>
