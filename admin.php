@@ -162,6 +162,7 @@ if (isset($_POST['delete'])) {
 <body>
     <div class="container">
         <h1>Admin Dashboard</h1>
+        <a href="extend_membership.php">Extend Membership</a>
         
         <div class="search-container">
             <form action="admin.php" method="GET">
@@ -181,7 +182,7 @@ if (isset($_POST['delete'])) {
                     <th>Pricing</th>
                     <th>Payment Amount</th>
                     <th>Payment Date</th>
-                    <th>Validity (30 Days)</th>
+                    <th>Validity</th>
                     <th>Actions</th>
                 </tr>
             </thead>
