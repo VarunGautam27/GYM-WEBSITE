@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($stmt->execute()) {
-        echo "You have successfully booked a free class for the $program program!";
+        $success_message = "You have successfully booked a free class for the $program program!";
     } else {
-        echo "Error: " . $stmt->error;
+        $success_message = "Error: " . $stmt->error;
     }
 
     // Close the statement
@@ -46,43 +46,99 @@ $conn->close();
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: grey;
+            background-color: #f4f4f4;
         }
+
         .container {
             width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: skyblue;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
             border-radius: 10px;
-            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             color: #333;
             text-align: center;
+            margin-bottom: 20px;
         }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 20px;
         }
-        label, select, input {
-            margin-bottom: 20px;
-            font-size: 20px;
+
+        label {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
         }
-        input[type="submit"] {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
+
+        input[type="text"], input[type="date"], select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
         }
+
+        input[type="text"]:focus, input[type="date"]:focus, select:focus {
+            border-color: #007BFF;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
         input[type="submit"]:hover {
-            background-color: #555;
+            background-color: #0056b3;
+        }
+
+        /* Success Message */
+        .success-message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: green;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            label, input, select {
+                font-size: 16px;
+            }
+
+            input[type="submit"] {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -112,13 +168,11 @@ $conn->close();
 
             <input type="submit" value="Book Free Class">
         </form>
-         <!-- Success Message -->
-         <?php if (!empty($success_message)) { ?>
-            <div class="success-message">
-                <?php echo $success_message; ?>
-            </div>
+        <?php if (!empty($success_message)) { ?>
+            <script>
+                alert("<?php echo $success_message; ?>");
+            </script>
         <?php } ?>
-    </div>
     </div>
 </body>
 </html>
