@@ -99,7 +99,7 @@ $diet_options = [
     </style>
 </head>
 <body>
-    <form action="save.php" method="POST">
+    <form action="logout.php" method="POST">
         <button type="submit" class="logout-button">Logout</button>
     </form>
 
