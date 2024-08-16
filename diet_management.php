@@ -70,13 +70,13 @@ $diet_options = [
         }
         form button {
             font-size: 16px;
-            background-color: #90ee90; /* Light green */
+            background-color: #90ee90; 
             color: white;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            padding: 10px; /* Add padding for better appearance */
-            border-radius: 5px; /* Add border radius for rounded corners */
+            padding: 10px; 
+            border-radius: 5px; 
         }
         .form button:hover {
             background-color: #00acc1; 
@@ -99,7 +99,7 @@ $diet_options = [
     </style>
 </head>
 <body>
-    <form action="logout.php" method="POST">
+    <form action="save.php" method="POST">
         <button type="submit" class="logout-button">Logout</button>
     </form>
 

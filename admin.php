@@ -12,10 +12,10 @@ $username = "root";
 $password = ""; 
 $dbname = "gym_registration";
 
-// Create a connection to the MySQL database
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -24,7 +24,7 @@ $search_term = "";
 if (isset($_GET['search'])) {
     $search_term = $conn->real_escape_string($_GET['search']);
 }
-// Fetch registered members with payment details
+
 $sql = "SELECT m.id AS member_id, m.name, m.email, m.phonenumber, m.services, m.pricing,
                p.amount, p.payment_date, DATE_ADD(p.payment_date, INTERVAL 30 DAY) AS validity
         FROM members m
@@ -39,7 +39,6 @@ if (!empty($search_term)) {
 
 $sql .= " ORDER BY m.created_at DESC";
 
-// Handle account deletion
 if (isset($_POST['delete'])) {
     $id_to_delete = $_POST['delete'];
     $conn->query("DELETE FROM payments WHERE member_id = $id_to_delete");
