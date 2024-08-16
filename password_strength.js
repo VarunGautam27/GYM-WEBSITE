@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const passwordInput = document.getElementById('password');
-    const passwordCriteria = document.getElementById('passwordCriteria');
+    9const passwordCriteria = document.getElementById('passwordCriteria');
+   const phoneInput = document.getElementById('phone');
     const togglePasswordButton = document.getElementById('togglePassword');
     const form = document.querySelector('form');
 
@@ -54,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         if (!validatePhoneNumber()) {
             event.preventDefault();
-            alert('Phone number must be exactly 10 digits and start with 98.');
+            alert('Phone number must be exactly 10 digits and start with 9.');
         }
     });
 });

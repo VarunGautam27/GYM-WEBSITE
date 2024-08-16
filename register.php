@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // User exists
+
         echo "<script>alert('A user with this email already exists.'); window.location.href='register.php';</script>";
     } else {
-        // User does not exist, proceed with registration
+
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $created_at = date("Y-m-d H:i:s");
 
