@@ -28,12 +28,19 @@ document.addEventListener("DOMContentLoaded", function() {
         return valid;
     }
 
-    // Validate password on input
+    function validatePhoneNumber() {
+        const phoneNumber = phoneInput.value;
+        const phoneRegex = /^9\d{9}$/; // Regex to check if number starts with 98 and has exactly 10 digits
+        return phoneRegex.test(phoneNumber);
+    }
+
+
     passwordInput.addEventListener('input', function() {
         validatePassword();
     });
 
-    // Toggle password visibility
+
+
     togglePasswordButton.addEventListener('click', function() {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
@@ -42,8 +49,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     form.addEventListener('submit', function(event) {
         if (!validatePassword()) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault();
             alert('Please fulfill the password criteria.');
+        }
+        if (!validatePhoneNumber()) {
+            event.preventDefault();
+            alert('Phone number must be exactly 10 digits and start with 98.');
         }
     });
 });

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header("Location: ADMIN_LOGIN.PHP"); // Redirect to login page if not logged in
     exit();
@@ -12,9 +11,7 @@ $username = "root";
 $password = ""; 
 $dbname = "gym_registration";
 
-
 $conn = new mysqli($servername, $username, $password, $dbname);
-
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -25,26 +22,59 @@ if (isset($_GET['search'])) {
     $search_term = $conn->real_escape_string($_GET['search']);
 }
 
-$sql = "SELECT m.id AS member_id, m.name, m.email, m.phonenumber, m.services, m.pricing,
-               p.amount, p.payment_date, DATE_ADD(p.payment_date, INTERVAL 30 DAY) AS validity
+$sql = "SELECT m.id AS member_id, m.name, m.email, m.phonenumber, m.services, p.pricing, p.amount, p.payment_date, p.validity
         FROM members m
-        LEFT JOIN payments p ON m.id = p.id
-        ORDER BY m.created_at DESC";
-
-$result = $conn->query($sql);
+        LEFT JOIN payments p ON m.id = p.id";
 
 if (!empty($search_term)) {
     $sql .= " WHERE m.name LIKE '%$search_term%' OR m.email LIKE '%$search_term%' OR m.phonenumber LIKE '%$search_term%' OR m.services LIKE '%$search_term%'";
 }
 
 $sql .= " ORDER BY m.created_at DESC";
+$result = $conn->query($sql);
+if ($conn->error) {
+    echo "Error: " . $conn->error; // Debugging SQL errors
+}
 
 if (isset($_POST['delete'])) {
     $id_to_delete = $_POST['delete'];
-    $conn->query("DELETE FROM payments WHERE member_id = $id_to_delete");
+    $conn->query("DELETE FROM payments WHERE id = $id_to_delete");
     $conn->query("DELETE FROM members WHERE id = $id_to_delete");
    
     header("Location: admin.php"); // Refresh the page after deletion
+    exit();
+}
+
+if (isset($_POST['extend_membership'])) {
+    $id_to_extend = $_POST['extend_membership'];
+    $extension_period = $_POST['extension_period'];
+
+    // Get the current validity for the member
+    $result = $conn->query("SELECT validity FROM payments WHERE id = $id_to_extend");
+    $row = $result->fetch_assoc();
+    $current_validity = $row['validity'];
+
+    // Calculate new validity date
+    $new_validity = $current_validity;
+    switch ($extension_period) {
+        case 'Monthly':
+            $new_validity = date('Y-m-d H:i:s', strtotime($current_validity . ' +30 days'));
+            break;
+        case 'Quarterly':
+            $new_validity = date('Y-m-d H:i:s', strtotime($current_validity . ' +90 days'));
+            break;
+        case 'Half-Yearly':
+            $new_validity = date('Y-m-d H:i:s', strtotime($current_validity . ' +180 days'));
+            break;
+        case 'Yearly':
+            $new_validity = date('Y-m-d H:i:s', strtotime($current_validity . ' +365 days'));
+            break;
+    }
+
+    // Update validity in the database
+    $conn->query("UPDATE payments SET validity = '$new_validity' WHERE id = $id_to_extend");
+
+    header("Location: admin.php"); // Refresh the page after extending
     exit();
 }
 ?>
@@ -139,6 +169,13 @@ if (isset($_POST['delete'])) {
             background-color: #b71c1c;
             transform: scale(1.05);
         }
+        .extend-form {
+            display: inline-block;
+        }
+        .extend-select {
+            padding: 5px;
+            margin-right: 5px;
+        }
         .logout-button {
             display: block;
             width: 10%;
@@ -162,7 +199,6 @@ if (isset($_POST['delete'])) {
 <body>
     <div class="container">
         <h1>Admin Dashboard</h1>
-        <a href="extend_membership.php">Extend Membership</a>
         
         <div class="search-container">
             <form action="admin.php" method="GET">
@@ -190,7 +226,7 @@ if (isset($_POST['delete'])) {
                 <?php if ($result->num_rows > 0): ?>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
-                        <td><?php echo htmlspecialchars($row['member_id']); ?></td>
+                            <td><?php echo htmlspecialchars($row['member_id']); ?></td>
                             <td><?php echo htmlspecialchars($row['name']); ?></td>
                             <td><?php echo htmlspecialchars($row['email']); ?></td>
                             <td><?php echo htmlspecialchars($row['phonenumber']); ?></td>
@@ -202,6 +238,15 @@ if (isset($_POST['delete'])) {
                             <td>
                                 <form action="admin.php" method="POST" style="display:inline;">
                                     <button type="submit" name="delete" value="<?php echo $row['member_id']; ?>">Delete</button>
+                                </form>
+                                <form class="extend-form" action="admin.php" method="POST" style="display:inline;">
+                                    <select name="extension_period" class="extend-select" required>
+                                        <option value="Monthly">Monthly</option>
+                                        <option value="Quarterly">Quarterly</option>
+                                        <option value="Half-Yearly">Half-Yearly</option>
+                                        <option value="Yearly">Yearly</option>
+                                    </select>
+                                    <button type="submit" name="extend_membership" value="<?php echo $row['member_id']; ?>">Extend</button>
                                 </form>
                             </td>
                         </tr>
