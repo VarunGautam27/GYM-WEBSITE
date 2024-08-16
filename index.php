@@ -322,7 +322,7 @@ footer .copyright {
             <p>Choose us for state-of-the-art facilities, personalized training programs, and a supportive community.</p>
             <p>Our convenient location and flexible membership options make it easy to fit workouts into your busy schedule.</p>
             <p>Our experienced and certified trainers provide personalized workout plans and support, helping you stay motivated and reach your fitness milestones faster.</p>
-            <a href="free_class.php" class="btn">Book a Free Class</a>
+            <a href=free_class.php class="btn">Book a Free Class</a>
         </div>
     </section>
 

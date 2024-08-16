@@ -49,13 +49,13 @@ $conn->close();
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: grey;
         }
         .container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
-            background-color: white;
+            background-color: skyblue;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             margin-top: 30px;
@@ -71,6 +71,7 @@ $conn->close();
         }
         label, select, input {
             margin-bottom: 20px;
+            font-size: 20px;
         }
         input[type="submit"] {
             background-color: #333;
@@ -111,6 +112,13 @@ $conn->close();
 
             <input type="submit" value="Book Free Class">
         </form>
+         <!-- Success Message -->
+         <?php if (!empty($success_message)) { ?>
+            <div class="success-message">
+                <?php echo $success_message; ?>
+            </div>
+        <?php } ?>
+    </div>
     </div>
 </body>
 </html>

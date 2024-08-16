@@ -85,6 +85,10 @@ if (isset($_POST['extend_membership'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Zenith Forge Gym</title>
+    <div class="view-free-classes-button" style="text-align: center; margin-bottom: 20px;">
+    <a href="view_free_classes.php" class="btn-view-free-classes" style="padding: 10px 20px; background-color: #006064; color: white; text-decoration: none; border-radius: 5px;">View Free Classes</a>
+</div>
+
     <link rel="stylesheet" href="admin.css">
     <style>
         body {
