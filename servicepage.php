@@ -9,10 +9,10 @@ if (!isset($_SESSION['id'])) {
 
 // Retrieve user information from the session
 $services = $_SESSION['services'];
-$pricing = $_SESSION['pricing'];
+
 
 $cookie_name = "last_viewed_subscription";
-$cookie_value = "Services: $services, Pricing: $pricing";
+$cookie_value = "Services: $services";
 $cookie_expiration = time() + (86400 * 30); 
 setcookie($cookie_name, $cookie_value, $cookie_expiration, "/");
 ?>
@@ -147,8 +147,7 @@ setcookie($cookie_name, $cookie_value, $cookie_expiration, "/");
     <div class="container">
         <h2>Your Subscription Details</h2>
         <p><strong>Selected Services:</strong> <?php echo htmlspecialchars($services); ?></p>
-        <p><strong>Pricing Plan:</strong> <?php echo htmlspecialchars($pricing); ?></p>
-        
+       
         <div class="payment-container">
             <h2>Proceed to Payment</h2>
             <form action="payment.php" method="POST">

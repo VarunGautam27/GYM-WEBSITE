@@ -24,6 +24,7 @@ if ($conn->connect_error) {
 $payment_method = '';
 $account_number = '';
 $amount = '';
+$pricing = '';
 $payment_success = false;
 
 // Process the payment when form is submitted
@@ -43,13 +44,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $amount = $_POST['amount'];
     }
 
+    // Retrieve pricing plan
+    if (isset($_POST['pricing'])) {
+        $pricing = $_POST['pricing'];
+    }
+
+    // Calculate validity date based on the pricing plan
+    $validity_date = '';
+    switch ($pricing) {
+        case 'Monthly':
+            $validity_date = date('Y-m-d H:i:s', strtotime('+30 days'));
+            break;
+        case 'Quarterly':
+            $validity_date = date('Y-m-d H:i:s', strtotime('+90 days'));
+            break;
+        case 'Half-Yearly':
+            $validity_date = date('Y-m-d H:i:s', strtotime('+180 days'));
+            break;
+        case 'Yearly':
+            $validity_date = date('Y-m-d H:i:s', strtotime('+365 days'));
+            break;
+        default:
+            $validity_date = date('Y-m-d H:i:s', strtotime('+30 days'));
+            break;
+    }
+
     // Simulate payment success (replace this with actual payment processing logic)
     if (!empty($payment_method) && !empty($account_number) && !empty($amount)) {
         // Insert payment details into the database
-        $validity_date = date('Y-m-d H:i:s', strtotime('+30 days'));
-        
-        $stmt = $conn->prepare("INSERT INTO payments (amount, payment_date, validity) VALUES (?, NOW(), ?)");
-        $stmt->bind_param("ds", $amount, $validity_date);
+        $stmt = $conn->prepare("INSERT INTO payments (pricing, amount, payment_date, validity) VALUES (?, ?, NOW(), ?)");
+        $stmt->bind_param("sds", $pricing, $amount, $validity_date);
 
         if ($stmt->execute()) {
             $payment_success = true; // Payment record inserted successfully
@@ -62,11 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Redirect back to the service page if no payment method was selected
-if (empty($payment_method)) {
-    header("Location: servicepage.php");
-    exit();
-}
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -134,6 +154,15 @@ if (empty($payment_method)) {
         <h2>Payment Details</h2>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
             <input type="hidden" name="payment_method" value="<?php echo htmlspecialchars($payment_method); ?>">
+
+            <label for="pricing">Select Pricing Plan:</label>
+            <select name="pricing" class="input-field" required>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+                <option value="Half-Yearly">Half-Yearly</option>
+                <option value="Yearly">Yearly</option>
+            </select>
+
             <label for="account_number">Enter Your Account Number/ID:</label>
             <input type="text" name="account_number" class="input-field" required>
 
@@ -143,12 +172,13 @@ if (empty($payment_method)) {
             <label for="password">Enter Password:</label>
             <input type="password" name="password" class="input-field" required>
 
-
             <button type="submit" class="button">Proceed to Confirm Payment</button>
         </form>
 
         <?php if ($payment_success): ?>
             <p>Your payment of <strong><?php echo htmlspecialchars($amount); ?></strong> was successful!</p>
+            <p>Your plan is: <strong><?php echo htmlspecialchars($pricing); ?></strong></p>
+            <p>Validity Until: <strong><?php echo htmlspecialchars($validity_date); ?></strong></p>
         <?php else: ?>
             <?php if (!empty($account_number) || !empty($amount)): ?>
                 <p>There was an error processing your payment. Please ensure all details are correct.</p>

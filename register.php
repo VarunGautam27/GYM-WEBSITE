@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $phonenumber = $_POST['phone'];
     $services = $_POST['services'];
-    $pricing = $_POST['pricing'];
+
 
     // Check if the user already exists
     $stmt = $conn->prepare("SELECT id FROM members WHERE email = ?");
@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $created_at = date("Y-m-d H:i:s");
 
-        $stmt = $conn->prepare("INSERT INTO members (name, email, password, phonenumber, services, pricing, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param('sssisss', $name, $email, $hashed_password, $phonenumber, $services, $pricing, $created_at);
+        $stmt = $conn->prepare("INSERT INTO members (name, email, password, phonenumber, services, created_at) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param('sssiss', $name, $email, $hashed_password, $phonenumber, $services,$created_at);
 
         if ($stmt->execute()) {
             echo "<script>alert('Registration successful!'); window.location.href='index.php';</script>";
