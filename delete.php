@@ -18,7 +18,12 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Prepare and execute the deletion query
+    // Prepare and execute the deletion query for the payments table
+    $stmt = $pdo->prepare("DELETE FROM payments WHERE id = :id");
+    $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Prepare and execute the deletion query for the members table
     $stmt = $pdo->prepare("DELETE FROM members WHERE id = :id");
     $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
     $stmt->execute();

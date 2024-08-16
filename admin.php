@@ -259,7 +259,10 @@ if (isset($_POST['extend_membership'])) {
             </tbody>
         </table>
 
-        <a href="logout.php"><button class="logout-button">Logout</button></a>
+        <form action="logout.php" method="POST">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
+
     </div>
 </body>
 </html>

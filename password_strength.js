@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const passwordInput = document.getElementById('password');
-    9const passwordCriteria = document.getElementById('passwordCriteria');
+    const passwordCriteria = document.getElementById('passwordCriteria');
    const phoneInput = document.getElementById('phone');
     const togglePasswordButton = document.getElementById('togglePassword');
     const form = document.querySelector('form');
