@@ -1,24 +1,54 @@
+
 <?php
 session_start();
 
-// Define admin credentials (you can replace this with database checks)
-$admin_username = "admin"; // Replace with actual admin username
-$admin_password = "password"; // Replace with actual admin password
+// Database credentials
+$servername = "localhost";
+$username = "root";
+$password = ""; 
+$dbname = "gym_registration";
+
+// Create a connection to the MySQL database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Handle login form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Check credentials
-    if ($username === $admin_username && $password === $admin_password) {
-        $_SESSION['admin_logged_in'] = true;
-        header("Location: admin.php"); // Redirect to the admin dashboard
-        exit();
+    // Prepare and execute the SQL query
+    $stmt = $conn->prepare("SELECT id, password_hash FROM admin WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    // Check if a user with the provided username exists
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($admin_id, $hashed_password);
+        $stmt->fetch();
+
+        // Verify the provided password against the hashed password
+        if (password_verify($password, $hashed_password)) {
+            // Password is correct, log in the admin
+            $_SESSION['admin_logged_in'] = true;
+            header("Location: admin.php"); // Redirect to the admin dashboard
+            exit();
+        } else {
+            $error_message = "Invalid username or password.";
+        }
     } else {
         $error_message = "Invalid username or password.";
     }
+
+    $stmt->close();
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Zenith Forge Gym</title>
-    <style>
-        body {
+    <title>Admin Login - Zenith Forge Gym</title> 
+        <style>
+         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             color: #333;
@@ -51,8 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         h1 {
             color: #00796b;
         }
-        input[type="text"],
-        input[type="password"] {
+        input {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -76,15 +105,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: red;
             margin-top: 10px;
         }
-    </style>
-</head>
+    </style> 
+   </head>
 <body>
     <div class="container">
         <h1>Admin Login</h1>
         <?php if (isset($error_message)): ?>
             <div class="error"><?php echo htmlspecialchars($error_message); ?></div>
         <?php endif; ?>
-        <form  method="POST">
+        <form method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
