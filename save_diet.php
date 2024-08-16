@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $user_id = $_SESSION['id'];
 
-    $stmt = $conn->prepare("UPDATE members SET diet_preference = ? WHERE id = ?");
-    $stmt->bind_param('si', $diet, $user_id); // 'si' indicates a string and an integer
+    $stmt = $conn->prepare("UPDATE members SET diet_preferences = ? WHERE id = ?");
+    $stmt->bind_param("si", $diet, $user_id); // 'si' indicates a string and an integer
 
     if ($stmt->execute()) {
 

@@ -75,10 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="services">Choose services:</label>
             <select id="services" name="services" required>
-                <option value="physical">Physical Fitness</option>
-                <option value="fatloss">Fat Loss</option>
-                <option value="weight">Weight Lifting</option>
-                <option value="strength">Strength Training</option>
+                <option value="Physical Fitness">Physical Fitness</option>
+                <option value="Fatloss">Fat Loss</option>
+                <option value="Weight Lifting">Weight Lifting</option>
+                <option value="Strength Training">Strength Training</option>
                 <option value="cardio">Cardio</option>
                 <option value="weightgain">Weight Gain</option>
             </select>
