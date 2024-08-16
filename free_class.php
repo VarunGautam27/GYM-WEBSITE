@@ -171,6 +171,9 @@ $conn->close();
         <?php if (!empty($success_message)) { ?>
             <script>
                 alert("<?php echo $success_message; ?>");
+                setTimeout(function() {
+                    window.location.href = 'index.php';
+                }, 1000); // Redirect after 1 second
             </script>
         <?php } ?>
     </div>
